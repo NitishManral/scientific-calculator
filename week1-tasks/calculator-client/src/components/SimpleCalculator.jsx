@@ -42,6 +42,7 @@ const SimpleCalculator = () => {
         readOnly
       />
       <div className='keyContainer'>
+        
         <button value='1' onClick={handleClick}>
           1
         </button>
