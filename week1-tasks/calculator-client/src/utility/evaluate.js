@@ -1,5 +1,5 @@
 
-function evaluate(expression, isRadians = true, isInverse = false) {
+function evaluate(expression, isRadians = true) {
   expression = expression.replace(/\s+/g, '');
   expression = expression.replace(/pi/g, Math.PI.toString());
   expression = expression.replace(/e/g, Math.E.toString());
@@ -55,11 +55,12 @@ function evaluate(expression, isRadians = true, isInverse = false) {
           return Math.tan(a * Math.PI / 180);
         }
     },
-    'log': (a,b) => logBaseB(a,b),
+    'log': (a,b) => Math.log(a) / Math.log(b),
     'ln': (a) => Math.log(a),
-    'sqrt': (a) => Math.sqrt(a),
+    'root': (a,b) => Math.pow(a,1/b),
     'pi': () => Math.PI,
-    'e': () => Math.E
+    'e': () => Math.E,
+    'sqrt': (a) => Math.sqrt(a),
   };
 
   const operatorPrecedence = {
@@ -78,14 +79,12 @@ function evaluate(expression, isRadians = true, isInverse = false) {
     'log': 5,
     'ln': 5,
     'sqrt': 5,
+    'root': 5,
     'pi': 6,
     'e': 6
   };
   function isNumber(char) {
     return (!isNaN(parseFloat(char)) && isFinite(char)) || char === '.';
-  }
-  function logBaseB(a, b) {
-    return Math.log(a) / Math.log(b);
   }
   function factorial(n) {
     if (n === 0 || n === 1)
@@ -140,7 +139,7 @@ function evaluate(expression, isRadians = true, isInverse = false) {
   let outputQueue = [];
   expression = expression.split(/([\+\-\*\/\s])/).filter(Boolean);
   expression = expression.filter(element => element !== " ");
-
+  expression = expression.filter(element => element !== ",");
   
   console.log(expression);
   expression.forEach(token => {
@@ -179,7 +178,7 @@ function evaluate(expression, isRadians = true, isInverse = false) {
       }
       let a = parseFloat(calculationStack.pop());
       let b = null;
-      if (token !== 'sin' &&  token !== 'cos' && token !== 'tan' && token !== 'sin⁻¹' && token !== 'cos⁻¹' && token !== 'tan⁻¹' && token !== 'ln' && token !== 'sqrt' && token !== 'fact') {
+      if (token !== 'sin' &&  token !== 'cos' && token !== 'tan' && token !== 'sin⁻¹' && token !== 'cos⁻¹' && token !== 'tan⁻¹' && token !== 'ln'  && token !== 'fact' && token !== 'sqrt') {
         b = parseFloat(calculationStack.pop());
         if (isNaN(b)) {
           console.warn(`Invalid operands for operator ${token}: ${b}, ${a}`);

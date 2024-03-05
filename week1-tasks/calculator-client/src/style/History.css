@@ -1,0 +1,20 @@
+.histories{
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: transparent;
+    backdrop-filter: blur(100px);
+
+    height: 600px; 
+    overflow-y: auto;
+}
+.history{
+    margin-bottom: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #2b2727;
+    box-shadow: 0 0 5px 0 #000;
+    /* display: flex; */
+}
