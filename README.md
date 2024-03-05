@@ -1,3 +1,3 @@
 # Techplement
-- [ ] Week1-tasks
+- [X] Week1-tasks
 - [ ] Week2-tasks
