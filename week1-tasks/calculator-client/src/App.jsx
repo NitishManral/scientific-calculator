@@ -33,9 +33,6 @@ function App() {
   }
   return (
     <>
-      <header>
-        <h2 className='heading'>Calculator</h2>
-      </header>
       <div className='simple-calculator'>
         <div className='navContainer'>
           <button onClick={() => setView("simple")}>Simple</button>
